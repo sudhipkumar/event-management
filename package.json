@@ -1,0 +1,39 @@
+{
+  "name": "event-management",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
+    "axios": "^1.7.2",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^4.12.0",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^9.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5"
+  },
+  "description": "This is a Event Management Project Where We Can Manage Events",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Sudhip",
+  "license": "ISC"
+}
