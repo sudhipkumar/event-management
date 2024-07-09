@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
@@ -19,32 +20,38 @@ const Footer = () => {
             <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <Link href="/" className="text-gray-400 hover:text-white">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <Link href="#about" className="text-gray-400 hover:text-white">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  Services
-                </a>
+                <Link
+                  href="/discussion"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Discussion
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <Link
+                  href="/contact"
+                  className="text-gray-400 hover:text-white"
+                >
                   Contact
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/create-event"
                   className="text-gray-400 hover:text-white"
                 >
                   Create Event
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -73,16 +80,16 @@ const Footer = () => {
 
         <div className="mt-10 border-t border-gray-700 pt-6 flex flex-col md:flex-row items-center justify-between">
           <div className="flex space-x-4">
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="/" className="text-gray-400 hover:text-white">
               <FaFacebook size="1.5em" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="/" className="text-gray-400 hover:text-white">
               <FaTwitter size="1.5em" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="/" className="text-gray-400 hover:text-white">
               <FaInstagram size="1.5em" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
+            <a href="/" className="text-gray-400 hover:text-white">
               <FaLinkedin size="1.5em" />
             </a>
           </div>
