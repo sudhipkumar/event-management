@@ -1,7 +1,8 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoArrowBackOutline, IoTicketOutline } from "react-icons/io5";
+import Swal from "sweetalert2";
 
 const menuItems = [
   {
@@ -34,6 +35,81 @@ const menuItems = [
 const Navbar = () => {
   const { user, error, isLoading } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+
+  const [amount, setAmount] = useState(631); // example amount
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => {
+      if (!window.Razorpay) {
+        console.error("Razorpay SDK not loaded.");
+      }
+    };
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const handlePayment = async () => {
+    if (!window.Razorpay) {
+      alert("Razorpay SDK not loaded. Please try again later.");
+      return;
+    }
+
+    const res = await fetch("/api/createOrder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount }),
+    });
+
+    const data = await res.json();
+
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_API_KEY,
+      amount: data.amount,
+      currency: "INR",
+      name: "Event Management Ticket",
+      description: "Ticket Purchase",
+      order_id: data.id,
+      handler: async function (response: any) {
+        const verifyRes = await fetch("/api/verifyPayment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(response),
+        });
+
+        const verifyData = await verifyRes.json();
+        if (verifyData.message === "Payment verified successfully") {
+          Swal.fire("Success", "Payment successful!", "success");
+          // alert("Payment successful!");
+        } else {
+          Swal.fire("Error", "Payment verification failed.", "error");
+          // alert("Payment verification failed.");
+        }
+      },
+      prefill: {
+        name: "Mr Sudhip Kumar",
+        email: "hypertech708@gmail.com",
+        contact: "9337102708",
+      },
+      notes: {
+        address: "Keep Your Address Secret !!!",
+      },
+      theme: {
+        color: "#F37254",
+      },
+    };
+
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -127,7 +203,7 @@ const Navbar = () => {
         </ul>
         <button
           className="hidden md:flex items-center gap-2 shadow-xl px-7 py-3 rounded-full font-bold text-lg bg-gradient-to-r from-red-400 to-red-600 text-white uppercase duration-100 ease-in transition hover:from-blue-600 hover:to-blue-400"
-          onClick={() => console.log("Ticket button clicked")}
+          onClick={handlePayment}
         >
           <IoTicketOutline className="text-xl" />
           Ticket
