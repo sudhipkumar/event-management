@@ -1,4 +1,3 @@
-import useFetch from "@/hooks/useFetch";
 import { useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
@@ -194,8 +193,6 @@ const schedules: {
 };
 
 const ScheduleCard = () => {
-  // const value = useFetch("/api/contact");
-  // console.log("value---->", value);
   const [selectedDay, setSelectedDay] = useState("day1");
 
   return (

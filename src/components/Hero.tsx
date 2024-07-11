@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 const banner = [
   {
     id: 1,
-    img: "/banner1.jpg",
+    img: "/event8.jpg",
   },
   {
     id: 2,

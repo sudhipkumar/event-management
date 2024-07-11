@@ -88,10 +88,8 @@ const Navbar = () => {
         const verifyData = await verifyRes.json();
         if (verifyData.message === "Payment verified successfully") {
           Swal.fire("Success", "Payment successful!", "success");
-          // alert("Payment successful!");
         } else {
           Swal.fire("Error", "Payment verification failed.", "error");
-          // alert("Payment verification failed.");
         }
       },
       prefill: {
