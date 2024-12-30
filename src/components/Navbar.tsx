@@ -54,6 +54,7 @@ const Navbar = () => {
   }, []);
 
   const handlePayment = async () => {
+    const rzp1 = new (window as any).Razorpay(options);
     if (!window.Razorpay) {
       alert("Razorpay SDK not loaded. Please try again later.");
       return;
